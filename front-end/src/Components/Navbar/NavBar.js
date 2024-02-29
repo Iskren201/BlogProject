@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { TbWritingSign } from "react-icons/tb";
 import { MdOutlineMenu } from "react-icons/md";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-  }
+  };
 
   return (
     <>
@@ -17,9 +17,11 @@ const NavBar = () => {
         <nav className="w-full max-w-6xl flex relative justify-between items-center px-4 h-20">
           {/* logo */}
           <div className="inline-flex">
-            <Link className="_o6689fn" to="/">
+            <Link className="_o6689fn" href="/">
               <div className="hidden md:block">
-                <h1 className="text-3xl md:text-2xl lg:text-4xl font-bold tracking-tight text-gray-900">Write Something</h1>
+                <h1 className="text-3xl md:text-2xl lg:text-4xl font-bold tracking-tight text-gray-900">
+                  Write Something
+                </h1>
               </div>
             </Link>
           </div>
@@ -33,7 +35,11 @@ const NavBar = () => {
                   type="button"
                 >
                   <div className="block flex-grow overflow-hidden">
-                    <input type="text" value="Start your search" className="w-full px-2 py-1 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 text-gray-900" />
+                    <input
+                      type="text"
+                      value="Start your search"
+                      className="w-full px-2 py-1 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 text-gray-900"
+                    />
                   </div>
                   <div className="flex items-center justify-center relative h-8 w-8 rounded-full">
                     <IoIosSearch />
@@ -50,8 +56,13 @@ const NavBar = () => {
           <div className="flex-initial">
             <div className="flex justify-end items-center relative">
               <div className="flex mr-4 items-center">
-                <Link to="/register" className="hidden sm:inline-block py-2 px-3 hover:bg-gray-200 rounded-full">
-                  <div className="flex items-center relative cursor-pointer whitespace-nowrap">Become a writer</div>
+                <Link
+                  to="/register"
+                  className="hidden sm:inline-block py-2 px-3 hover:bg-gray-200 rounded-full"
+                >
+                  <div className="flex items-center relative cursor-pointer whitespace-nowrap">
+                    Become a writer
+                  </div>
                 </Link>
 
                 <div className="block relative">

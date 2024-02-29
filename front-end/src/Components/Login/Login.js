@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,24 +10,30 @@ const Login = () => {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    window.localStorage.setItem("isLogedIn", true);
     try {
       const { email, password } = formData;
-      // Send login credentials to the backend
+
+      if (!email || !password) {
+        toast.error("Please enter both email and password.");
+        return;
+      }
+
       const response = await axios.post("http://localhost:3333/login", {
         email,
         password,
       });
-      // If login successful, display success toast
       toast.success("Login successful");
-      // Handle the response data as needed (e.g., redirect user)
+      navigate("/");
     } catch (error) {
-      // Handle login error (e.g., display error message)
       toast.error("Login failed. Please check your credentials.");
       console.error("Error logging in:", error.message);
     }
