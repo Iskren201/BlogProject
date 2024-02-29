@@ -16,15 +16,15 @@ const NavBar = () => {
       <div className="w-full bg-white flex justify-center">
         <nav className="w-full max-w-6xl flex relative justify-between items-center px-4 h-20">
           {/* logo */}
-          <div className="inline-flex">
-            <Link className="_o6689fn" href="/">
+          <Link className="_o6689fn" to="/">
+            <div className="inline-flex">
               <div className="hidden md:block">
                 <h1 className="text-3xl md:text-2xl lg:text-4xl font-bold tracking-tight text-gray-900">
                   Write Something
                 </h1>
               </div>
-            </Link>
-          </div>
+            </div>
+          </Link>
           {/* end logo */}
           {/* search bar */}
           <div className="hidden sm:block flex-shrink flex-grow-0 justify-start px-2">

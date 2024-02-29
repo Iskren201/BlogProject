@@ -18,7 +18,6 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    window.localStorage.setItem("isLogedIn", true);
     try {
       const { email, password } = formData;
 
