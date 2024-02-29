@@ -39,12 +39,25 @@ const Register = () => {
 
   const validateForm = () => {
     const { username, email, password } = formData;
-    if (!username || !email || !password) {
+    if (!username.trim() || !email.trim() || !password.trim()) {
       toast.error("All fields are required");
       return false;
     }
-    // You can add more specific validation checks for email and password if needed
+    if (!isValidEmail(email.trim())) {
+      toast.error("Please enter a valid email address");
+      return false;
+    }
+    if (password.trim().length < 6) {
+      toast.error("Password must be at least 6 characters long");
+      return false;
+    }
     return true;
+  };
+
+  const isValidEmail = (email) => {
+    // Basic email validation using regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   };
 
   return (

@@ -70,12 +70,11 @@ app.post("/register", async (req, res) => {
 
 app.post("/login", async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
     const client = await pool.connect();
-    const result = await client.query(
-      "SELECT * FROM users WHERE username = $1",
-      [username]
-    );
+    const result = await client.query("SELECT * FROM users WHERE email = $1", [
+      email,
+    ]);
     client.release();
 
     if (result.rows.length === 0) {
@@ -89,7 +88,8 @@ app.post("/login", async (req, res) => {
       return res.status(401).send("Invalid password");
     }
 
-    const token = jwt.sign({ username: user.username }, "secretkey");
+    // If email and password match, generate JWT token and send it as response
+    const token = jwt.sign({ email: user.email }, "secretkey");
     res.status(200).json({ token });
   } catch (error) {
     res.status(500).send(error.message);
