@@ -6,9 +6,15 @@ import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogout = () => {
+    // Implement logout logic here
+    setIsLoggedIn(false); // Clear login status
   };
 
   return (
@@ -50,7 +56,6 @@ const NavBar = () => {
           </div>
           {/* end search bar */}
           {/* hamburger menu */}
-
           {/* end hamburger menu */}
           {/* login */}
           <div className="flex-initial">
@@ -64,14 +69,23 @@ const NavBar = () => {
                     Become a writer
                   </div>
                 </Link>
-
-                <div className="block relative">
-                  <div className="flex items-center h-5 mr-8">
-                    <div className="_xpkakx">
-                      <TbWritingSign />
+                {isLoggedIn && ( // Conditionally render logout button if logged in
+                  <>
+                    <button
+                      onClick={handleLogout}
+                      className="hidden sm:inline-block py-2 px-3 hover:bg-gray-200 rounded-full"
+                    >
+                      Logout
+                    </button>
+                    <div className="block relative">
+                      <div className="flex items-center h-5 mr-8">
+                        <div className="_xpkakx">
+                          <TbWritingSign />
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </>
+                )}
                 <div className="flex-initial py-0">
                   <button
                     className="block sm:hidden"
