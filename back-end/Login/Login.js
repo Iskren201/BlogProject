@@ -29,5 +29,5 @@ async function loginUser(req, res) {
     res.status(500).send(error.message);
   }
 }
-
+// test
 module.exports = loginUser;
