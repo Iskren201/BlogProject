@@ -24,9 +24,10 @@ async function loginUser(req, res) {
 
     // If email and password match, generate JWT token and send it as response
     const token = jwt.sign({ email: user.email }, "secretkey");
-    res.status(200).json({ token });
+    return res.status(200).json({ token }); // Return token in response
   } catch (error) {
-    res.status(500).send(error.message);
+    console.error("Error logging in user:", error.message);
+    return res.status(500).send(error.message);
   }
 }
 

@@ -9,6 +9,9 @@ const logoutRouter = require("./logout/logout");
 const app = express();
 const PORT = 3333;
 
+// Assuming this array stores tokens temporarily (not recommended for production)
+let activeTokens = [];
+
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -17,10 +20,18 @@ app.get("/protected", verifyToken, (req, res) => {
 });
 
 app.post("/register", registerUser);
-app.post("/login", (req, res) => {
-  loginUser(req, res);
-  if (res.statusCode === 200 && res.body.token) {
-    activeTokens.push(res.body.token);
+app.post("/login", async (req, res) => {
+  try {
+    const tokenResponse = await loginUser(req, res); // Call the loginUser function
+
+    // Check if the login was successful and token is returned
+    if (tokenResponse && tokenResponse.token) {
+      // If so, add the token to activeTokens array
+      activeTokens.push(tokenResponse.token);
+    }
+  } catch (error) {
+    console.error("Error logging in user:", error.message);
+    res.status(500).send(error.message);
   }
 });
 
