@@ -37,7 +37,7 @@ const NavBar = () => {
                   <div className="block flex-grow overflow-hidden">
                     <input
                       type="text"
-                      value="Start your search"
+                      placeholder="Start your search"
                       className="w-full px-2 py-1 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 placeholder-gray-500 text-gray-900"
                     />
                   </div>
